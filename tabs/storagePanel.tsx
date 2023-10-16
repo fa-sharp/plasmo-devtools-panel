@@ -26,7 +26,7 @@ function StoragePanel() {
     return () => {
       storage.primaryClient.onChanged.removeListener(storageListener)
     }
-  })
+  }, [area])
 
   return (
     <div
