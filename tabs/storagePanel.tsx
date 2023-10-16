@@ -12,11 +12,13 @@ function StoragePanel() {
     const storageListener = (changes: {
       [key: string]: chrome.storage.StorageChange
     }) => {
-      const newData = { ...data }
-      Object.entries(changes).forEach(([key, change]) => {
-        newData[key] = change.newValue
+      setData(prevData => {
+        const newData = { ...prevData }
+        Object.entries(changes).forEach(([key, change]) => {
+          newData[key] = change.newValue
+        })
+        return newData
       })
-      setData(newData)
     }
 
     const storage = new Storage({ area })
